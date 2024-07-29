@@ -31,10 +31,11 @@ CREATE TABLE IF NOT EXISTS patient_hospital
     hospital_id        integer,
     -- details about visit
     injury_description varchar(100),
-    injury_severity    integer NOT NULL,
-    arrival_time       timestamp    NOT NULL,
+    injury_severity    integer   NOT NULL,
+    arrival_time       timestamp NOT NULL,
     admission_time     timestamp, -- if null has not been seen yet, more useful than boolean as it provides more insight
 
+    -- should arrival time be included? this will limit if a patient can be admitted multiple times
     PRIMARY KEY (patient_id, hospital_id, arrival_time),
     FOREIGN KEY (patient_id) references patient,
     FOREIGN KEY (hospital_id) references hospital
