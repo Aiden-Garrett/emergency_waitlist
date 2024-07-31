@@ -14,9 +14,10 @@ CREATE TABLE IF NOT EXISTS patient
 
 CREATE TABLE IF NOT EXISTS administrator
 (
-    id        serial PRIMARY KEY,
+    username  varchar(25) PRIMARY KEY,
     firstname varchar(25),
-    lastname  varchar(25)
+    lastname  varchar(25),
+    password  varchar(25)
 );
 
 CREATE TABLE IF NOT EXISTS hospital
@@ -43,7 +44,7 @@ CREATE TABLE IF NOT EXISTS patient_hospital
 
 CREATE TABLE IF NOT EXISTS administrator_hospital
 (
-    admin_id    integer,
+    admin_id    varchar(25),
     hospital_id integer,
     FOREIGN KEY (admin_id) references administrator,
     FOREIGN KEY (hospital_id) references hospital

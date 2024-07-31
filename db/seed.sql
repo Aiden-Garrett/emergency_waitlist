@@ -2,14 +2,14 @@ INSERT INTO hospital
 values (DEFAULT, 'The Ottawa Hospital');
 
 INSERT INTO administrator
-VALUES (DEFAULT, 'Aiden', 'Garrett');
+VALUES ('agarr064@toh.ca', 'Aiden', 'Garrett', 'password123');
 INSERT INTO administrator_hospital
-VALUES (1, 1);
+VALUES ('agarr064@toh.ca', 1);
 
 INSERT INTO administrator
-values (DEFAULT, 'John', 'Doe');
+values ('admin', 'John', 'Doe', 'admin');
 INSERT INTO administrator_hospital
-values (2, 1);
+values ('admin', 1);
 
 -- insert sample patients
 INSERT INTO patient

@@ -1,0 +1,17 @@
+{
+  "name": "emergency_waitlist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aiden-Garrett/emergency_waitlist.git"
+  },
+  "private": true,
+  "dependencies": {
+    "jquery": "^3.7.1"
+  }
+}
