@@ -6,17 +6,21 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/styles.css">
     <title>Document</title>
 </head>
 <body>
 <h1>Hospital Client Waiting Time</h1>
 <form id="client-info-form">
+    <header>
+        <h2>Enter your information</h2>
+    </header>
     <label for="firstname">First Name</label>
-    <input id="firstname" type="text">
+    <input id="firstname" type="text" placeholder="Enter your first name" required>
     <label for="lastname">Last Name</label>
-    <input id="lastname" type="text">
-    <label for="code">Enter your 3 digit code</label>
-    <input id="code" type="text">
+    <input id="lastname" type="text" placeholder="Enter your last name" required>
+    <label for="code">3-digit code</label>
+    <input id="code" type="text" minlength="3" maxlength="3" placeholder="Enter your 3-digit code" required>
     <input type="submit">
 </form>
 <div id="queue-waiting-time">

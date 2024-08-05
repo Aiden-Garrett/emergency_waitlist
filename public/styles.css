@@ -1,0 +1,65 @@
+table, th, td {
+    border-collapse: collapse;
+    border: 1px solid;
+    text-align: center;
+    background-color: #a4cae1;
+    color: black;
+}
+
+table caption {
+    text-align: left;
+    font-weight: bold;
+    padding: 3px;
+    color: white;
+}
+
+table {
+    flex: 2 1;
+    padding: 10px;
+    height: fit-content;
+}
+
+#patient-checkin-form {
+    flex: 1 2;
+    height: fit-content;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #13294B;
+    color: white;
+}
+
+.main{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+form {
+    text-align: left;
+    display: inline-block;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    background-color: #a4cae1;
+    border-radius: 10px;
+    color: black;
+}
+
+h2, h3 {
+    padding: 0;
+    margin-top: 0;
+}
+
+input {
+    width: 100%;
+    margin: 5px;
+}
+
+#login {
+    display: flex;
+    align-items: center;
+}

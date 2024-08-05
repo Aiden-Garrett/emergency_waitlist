@@ -32,7 +32,7 @@ $app->post('/api/patient/getPosition', function (Request $request, Response $res
     $code = $body['code'];
     $queryParams = array($firstname, $lastname, $code);
     $query = pg_query_params($dbconn, "SELECT position FROM (SELECT firstname, lastname, code, ROW_NUMBER() over (ORDER BY injury_severity DESC, arrival_time ASC) as position FROM patient JOIN patient_hospital on patient.id = patient_hospital.patient_id AND admission_time IS NULL) as queue WHERE queue.firstname = $1 AND queue.lastname = $2 AND code = $3", $queryParams);
-    $response->getBody()->write(json_encode(pg_fetch_all($query)[0]));
+    $response->getBody()->write(json_encode(pg_fetch_row($query)));
     return $response;
 });
 
@@ -74,9 +74,28 @@ $app->post('/api/admin/login', function (Request $request, Response $response, $
     $password = $body['password'];
     $queryParams = array($username, $password);
     $query = pg_query_params($dbconn, "SELECT * FROM administrator WHERE username=$1 AND password=$2", $queryParams);
-    $response->getBody()->write(json_encode(pg_fetch_all($query)[0]));
+    $res = pg_fetch_row($query);
+    $response->getBody()->write(json_encode($res));
     return $response;
 });
 
+
+$app->post('/api/admin/register', function (Request $request, Response $response, $args) {
+    global $dbconn;
+    $body = $request->getParsedBody();
+    $firstname = $body['firstname'];
+    $lastname = $body['lastname'];
+    $code = $body['code'];
+
+    $description = $body['description'];
+    $severity = $body['severity'];
+    // just use current_timestamp from sql
+    // $admission_time = $body['admission_time'];
+
+    $queryParams = array($firstname, $lastname, $code, $description, $severity);
+    $query = pg_query_params($dbconn,"WITH inserted AS (INSERT INTO patient VALUES (DEFAULT, $1, $2, $3) RETURNING id) INSERT INTO patient_hospital SELECT id, 1, $4, $5, current_timestamp FROM inserted;", $queryParams);
+    $response->getBody()->write(json_encode($query));
+    return $response;
+});
 
 $app->run();

@@ -4,6 +4,8 @@ let admin = {
     hospitalId: "1"
 }
 
+$("#welcome-message").text(`Welcome ${admin.username}, to the admin dashboard!`);
+
 $("#admin-login").on("submit", function (event) {
     // stop form from actually "submitting"
     event.preventDefault();
@@ -15,18 +17,40 @@ $("#admin-login").on("submit", function (event) {
         type: "POST",
         url: "http://localhost:8888/api/admin/login",
         data: login,
-    }).then((response)=> {
+    }).then((response) => {
         // check that response occured
         let res = JSON.parse(response);
-        if (res !== undefined) {
+        if (res) {
             admin.username = res.username;
             admin.password = res.password;
             admin.hospitalId = res.hospitalId;
             window.location.replace("http://localhost:8888/administrator/dashboard");
+        } else {
+            alert("Login failed. Try again");
         }
     })
 });
 
+
+$("#patient-checkin-form").on("submit", function (event) {
+    event.preventDefault();
+    let patientInfo = {
+        firstname: $("#patient-firstname").val().toLowerCase(),
+        lastname: $("#patient-lastname").val().toLowerCase(),
+        code: $('#patient-code').val(),
+
+        description: $("#injury-desc").val(),
+        severity: $("#severity").val()
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8888/api/admin/register",
+        data: patientInfo
+    }).then((response) => {
+        getQueue();
+    });
+})
 
 getQueue();
 
@@ -41,8 +65,8 @@ function getQueue() {
         for (let row of data) {
             let tr = $("<tr></tr>");
 
-            tr.append(`<td>${row.firstname}</td>`);
-            tr.append(`<td>${row.lastname}</td>`);
+            tr.append(`<td>${row.firstname.charAt(0).toUpperCase() + row.firstname.slice(1)}</td>`);
+            tr.append(`<td>${row.lastname.charAt(0).toUpperCase() + row.lastname.slice(1)}</td>`);
             tr.append(`<td>${row.injury_description}</td>`);
             tr.append(`<td>${row.injury_severity}</td>`);
             tr.append(`<td>${row.arrival_time}</td>`);
