@@ -1,4 +1,5 @@
 # emergency_waitlist
+er diagram is in the db directory.
 ## Running the application
 ### Developers' perspective
 1. Ensure postgres is installed
