@@ -1,7 +1,7 @@
 let admin = {
     username: "admin",
     password: "admin",
-    hospitalId: "1"
+    hospital_id: "1"
 }
 
 $("#welcome-message").text(`Welcome ${admin.username}, to the admin dashboard!`);
@@ -23,7 +23,7 @@ $("#admin-login").on("submit", function (event) {
         if (res) {
             admin.username = res.username;
             admin.password = res.password;
-            admin.hospitalId = res.hospitalId;
+            admin.hospitalId = res.hospital_id;
             window.location.replace("http://localhost:8888/administrator/dashboard");
         } else {
             alert("Login failed. Try again");
