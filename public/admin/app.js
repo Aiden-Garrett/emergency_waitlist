@@ -23,7 +23,7 @@ $("#admin-login").on("submit", function (event) {
         if (res) {
             admin.username = res.username;
             admin.password = res.password;
-            admin.hospitalId = res.hospital_id;
+            admin.hospital_id = res.hospital_id;
             window.location.replace("http://localhost:8888/administrator/dashboard");
         } else {
             alert("Login failed. Try again");
