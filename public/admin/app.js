@@ -40,7 +40,8 @@ $("#patient-checkin-form").on("submit", function (event) {
         code: $('#patient-code').val(),
 
         description: $("#injury-desc").val(),
-        severity: $("#severity").val()
+        severity: $("#severity").val(),
+        hospitalId: admin.hospitalId
     }
 
     $.ajax({

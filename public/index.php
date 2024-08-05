@@ -89,11 +89,12 @@ $app->post('/api/admin/register', function (Request $request, Response $response
 
     $description = $body['description'];
     $severity = $body['severity'];
+    $hospitalId = $body['hospitalId'];
     // just use current_timestamp from sql
     // $admission_time = $body['admission_time'];
 
-    $queryParams = array($firstname, $lastname, $code, $description, $severity);
-    $query = pg_query_params($dbconn,"WITH inserted AS (INSERT INTO patient VALUES (DEFAULT, $1, $2, $3) RETURNING id) INSERT INTO patient_hospital SELECT id, 1, $4, $5, current_timestamp FROM inserted;", $queryParams);
+    $queryParams = array($firstname, $lastname, $code, $description, $severity, $hospitalId);
+    $query = pg_query_params($dbconn,"WITH inserted AS (INSERT INTO patient VALUES (DEFAULT, $1, $2, $3) RETURNING id) INSERT INTO patient_hospital SELECT id, $6, $4, $5, current_timestamp FROM inserted;", $queryParams);
     $response->getBody()->write(json_encode($query));
     return $response;
 });
